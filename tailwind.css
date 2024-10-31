@@ -1,0 +1,703 @@
+Basic Tailwind CSS Questions (8 questions)
+
+/* 1.What is Tailwind CSS, and how does it differ from traditional CSS frameworks like Bootstrap? */
+
+answer
+Tailwind CSS is a utility-first CSS framework that enables developers to create custom designs directly in their markup. Unlike traditional CSS frameworks like Bootstrap, which provide pre-designed components, Tailwind focuses on low-level utility classes that allow for more flexibility and customization.
+
+Key Differences Between Tailwind CSS and Traditional Frameworks:
+Utility-First Approach:
+
+Tailwind CSS uses utility classes (like bg-blue-500, text-center, p-4) to apply styles directly in the HTML. This allows for rapid prototyping and more control over the design without writing custom CSS**, on the other hand, offers pre-designed components (like buttons, modals, and navbars) with predefined styles that can be customized but often require overriding existing CSS to achieve a unique look .
+**Customiza - Tailwind CSS promotes a highly customizable workflow, allowing developers to configure their design system through a configuration file. This enables them to set colors, fonts, and breakpoints that fit their project needs .
+
+Bootstrap provievel of customization, but it is generally constrained by the existing component styles, which can lead to inconsistencies if overridden .
+File Size and Performanceailwind CSS** uses a build process (e.g., PurgeCSS) to remove unused styles, resulting in a much smaller final CSS file. This is particularly advantageous for performance .
+
+Bootstrap typically includes a laile because it contains all the styles for its components, even if not all of them are used in a particular project .
+Learning Curve:
+
+Tailwind CSS may ing curve initially due to the need to understand its utility classes and how to compose them to achieve designs .
+Bootstrap is often seen as easier for beginners because it pady-made components that require less knowledge to implement .
+Summary
+Tailwind CSS focuses on a utility-first approach that provides fmization, making it suitable for developers who want fine-grained control over their design. In contrast, traditional frameworks like Bootstrap offer a more component-based approach, which is easier for beginners but can lead to less unique designs. For more information, you can refer to sources like CSS-Tricks and Smashing Magazine .
+
+
+
+
+
+
+/* 2.How do you set up Tailwind CSS in a project? Describe the different installation methods. */
+
+answer
+To set up Tailwind CSS in a project, there are several installation methods available, depending on your workflow preferences. Here are the main options:
+
+1. Using npm (Recommended for Most Projects)
+This method is suitable for projects where you want to take advantage of build tools like PostCSS.
+
+Steps:
+
+Initialize your project and install Tailwind CSS:
+bash
+
+npm init -y
+npm install tailwindcss
+npx tailwindcss init
+Create a CSS file (e.g., styles.css) and add the following lines:
+css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+Add Tailwind to your build process using PostCSS. Update your package.json with a build script:
+json
+Copy code
+"scripts": {
+  "build": "tailwindcss build styles.css -o output.css"
+}
+Run the build command:
+bash
+
+npm run build
+Link output.css in your HTML file.
+For more detailed steps, check the official Tailwind documentation.
+
+2. Using a CDN
+This method is great for quick prototypes or simple projects without a build step.
+
+Steps:
+
+Include the following CDN link in your HTML file:
+html
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+You can start using Tailwind CSS classes directly in your HTML.
+For additional information, see the Tailwind CSS CDN guide.
+
+3. Using a Framework or Library
+If you are working with a framework like Laravel, Vue, or React, you can set up Tailwind CSS using specific integrations.
+
+For example, in Laravel:
+
+Install via Composer:
+bash
+Copy code
+composer require tailwindcss/tailwindcss
+Follow the Laravel Mix documentation to set up Tailwind CSS.
+For framework-specific setups, refer to the respective sections in the Tailwind CSS documentation.
+
+Summary
+You can install Tailwind CSS using npm (recommended for larger projects), a CDN (for quick setups), or as part of a framework integration. Each method has its use cases, so choose the one that fits your project's needs. For comprehensive instructions, visit the official Tailwind CSS installation guide.
+
+
+
+
+/* 3.What are utility classes in Tailwind CSS? How do they help in building UI components? */
+
+answer
+Utility classes in Tailwind CSS are single-purpose classes that apply specific styles to elements, allowing developers to build user interfaces by composing these classes directly in the HTML. This utility-first approach enables rapid development and customization without the need to write extensive custom CSS.
+
+Benefits of Utility Classes:
+Flexibility: Utility classes provide granular control over styling, making it easy to change styles directly in your markup without needing to reference external CSS filesS Bloat**: By using a utility-first approach, you can keep your CSS file size smaller since you’re not writing custom styles for every component. Tailwind compiles only the classes you use, which optimizes performance .
+
+**Rapid Prility classes, developers can quickly build and iterate on designs without switching contexts to write custom styles. This is especially beneficial for agile development .
+
+Consistency: Utility claency in design since they use a defined set of styles across the application, making it easier to maintain and update styles .
+
+Example:
+For instance, to create a button, yo <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded"> Click Me </button>
+
+kotlin
+
+Here, each class applies a specific style, allowing for easy adjustments by simply adding or changing classes.
+
+
+
+
+
+/* 4.Explain the benefits of using Tailwind’s JIT (Just-in-Time) mode. */
+
+answer
+Tailwind CSS’s Just-in-Time (JIT) mode offers several significant benefits that enhance the development experience and improve the performance of web applications. Here are the key advantages:
+
+On-Demand Generation:
+
+JIT mode generates styles on-the-fly as you use them in your markup, meaning it only creates CSS for the utility classes you actually apply. This leads to a smaller final CSS file size, reducing the amount of unused stylesld Times**:
+Since JIT only compiles the classes you use, the build process is significantly faster compared to traditional methods that generate a large CSS file upfront. This makes it particularly beneficial for development environments where frequent changes are common .
+*Full Clas:
+
+JIT mode supports all utility classes, including those generated from your configuration settings, which allows for more complex and dynamic styles without needing to define every potential class beforehand. This flexibility helps in rapidly iterating designs .
+**Extended Variants- You can easily use arbitrary values (e.g., mt-[10px] for margin-top) and extended variants (like responsive and hover states) without predefining them in your configuration file. This feature allows for a more expressive and powerful styling approach .
+
+Improved Developer Experience: ite styles directly in the HTML using utility classes, which streamlines the development process and reduces context switching between HTML and CSS files. This promotes a more cohesive workflow and encourages experimentation with design .
+
+In summary, Tailwind's JIT mode enhances performance, flexer productivity, making it a powerful tool for modern web development. For more detailed information, you can explore the Tailwind CSS documentation .
+
+
+
+
+
+/* 5.What are configuration files in Tailwind, and how do they customize the framework? */
+
+answer
+In Tailwind CSS, configuration files (typically tailwind.config.js) are used to customize the framework to fit your project's specific design requirements. This file allows you to define various settings and extend the default Tailwind framework.
+
+Key Features of Configuration Files:
+Customizing Theme:
+
+You can modify the default theme settings, including colors, fonts, spacing, and breakpoints. This enables you to create a consistent design system tailored to your brand or project needs 
+IPRAXA
+ending Utilities**:
+The configuration file allows you to add custom utility classes or variants that aren't included in the default Tailwind setup. This enhances the flexibility of the framework and allows for more specific styling options .
+Etures:
+
+You can enable or disable specific features like JIT mode, dark mode, or core plugins. This helps in optimizing your build process and controlling which parts of Tailwind you want to use .
+Arbitrary Values: ry values in the configuration file to allow for dynamic styling. For example, defining a custom padding value like p-[10px] can be easily managed through the config file .
+
+Custom Breakpoints:
+
+You can define custe breakpoints that suit your design requirements, providing more control over how elements behave on different screen sizes .
+Example of a Configuration File:
+A basic `tailwind.config.ht look like this:
+
+javascript
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        customColor: '#1c1c1e',
+      },
+    },
+  },
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    },
+  },
+};
+In summary, configuration files in Tailwind CSS are powerful tools that allow developers to customize and extend the framework, enabling them to create unique and tailored web designs. For more detailed information, you can refer to the Tailwind CSS documentation【108†source】 .​
+IPRAXA
+
+
+
+/* 6.How does the @apply directive work, and what is its purpose in Tailwind? */
+
+answer
+
+The @apply directive in Tailwind CSS allows developers to compose utility classes within their custom CSS styles. This means you can create reusable CSS classes by applying multiple Tailwind utility classes at once, improving readability and maintainability.
+
+Purpose and Benefits of @apply:
+Simplifies CSS:
+
+By using @apply, you can avoid repetitive utility class definitions in your HTML, making your markup cleaner and more manageable. This is particularly useful for elements that share common stylessability**:
+You can create custom utility classes that encapsulate specific styling logic. This promotes code reusability across different components, reducing the need to repeat the same utility classes .
+**Enhances Read - Grouping utility classes into a single custom class can enhance the readability of your CSS, making it easier for developers to understand the styles applied to an element at a glance .
+
+Example Usage:
+Here’s howse the @apply directive in a CSS file:
+
+css
+
+.btn {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+In this example, the .btn class will now inherit the styles defined by the Tailwind utilities applied to it, allowing you to use <button class="btn"> in your HTML.
+
+Considerations:
+While @apply is powerful, it’s essential to use it judiciously to avoid creating overly complex stylesheets that may defeat the purpose of using a utility-first framework .
+For more information on the @apply dircan refer to the Tailwind CSS documentation .
+
+
+
+
+
+/* 7.What are responsive design utilities in Tailwind, and how do breakpoints work? */
+
+answer
+Responsive design utilities in Tailwind CSS allow developers to create adaptive layouts that change based on the screen size. These utilities enable you to apply different styles at various breakpoints, ensuring a seamless user experience across devices.
+
+How Breakpoints Work:
+In Tailwind CSS, breakpoints are predefined screen width thresholds that trigger specific styles. The default breakpoints include:
+
+sm: Small devices (≥640px)
+md: Medium devices (≥768px)
+lg: Large devices (≥1024px)
+xl: Extra-large devices (≥1280px)
+2xl: Extra-extra-large devices (≥1536px)
+Using Responsive Utilities:
+You can prepend a breakpoint prefix to any utility class to apply that style at the specified breakpoint and above. For example:
+
+html
+
+<div class="text-base md:text-lg lg:text-xl">
+  Responsive Text
+</div>
+In this example:
+
+text-base applies to all screen sizes.
+md:text-lg applies when the viewport width is at least 768px.
+lg:text-xl applies when the viewport width is at least 1024px.
+Benefits:
+Flexibility: Easily adjust styles for various devices without writing complex media queries.
+Efficiency: Reduce CSS bloat by using utility classes instead of custom CSS for responsive design.
+Additional Resources:
+For more detailed information, you can refer to the official Tailwind CSS documentation on responsive design and breakpoints​
+BOOTSTRAP
+​
+IPRAXA
+.
+
+
+
+
+/* 8.How does Tailwind handle theming and custom colors? */
+
+answer
+Tailwind CSS provides a flexible and powerful way to handle theming and custom colors through its configuration file (tailwind.config.js). This allows developers to create a consistent design language that aligns with their project's branding.
+
+Customizing Colors and Theming in Tailwind
+Default Color Palette:
+
+Tailwind comes with a default color palette that includes various shades for each color. You can use these built-in colors directly in your classes (e.g., bg-blue-500, text-red-300)efining Custom Colors**:
+You can easily extend the default color palette by adding custom colors in your configuration file. This is done in the theme.extend.colors section, allowing you to define any color that fits your design needs. For example:
+javascript
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#FF5733',
+        secondary: '#C70039',
+      },
+    },
+  },
+};
+Using CSS Variables for Theming:
+
+For more dynamic theming capabilities, Tailwind supports CSS custom properties (variables). You can define colors as CSS variables and use them in your Tailwind configuration, enabling easy switching between themes (like light and dark mode) without modifying your classes directly .
+*:
+
+Tailwind includes built-in support for dark mode, which can be enabled in the configuration file. You can define dark mode styles using the dark: variant. For example:
+css
+
+<div class="bg-white dark:bg-gray-800">
+  Themed Background
+</div>
+Theming Across Components:
+
+By using Tailwind's utility classes, you can maintain a consistent look across your components. Classes can easily be changed based on the theme, allowing for responsive design to be integrated with theming seamlessly .
+Conclusion
+Tailwinand custom color management straightforward and efficient. By utilizing the configuration file for defining custom colors and leveraging CSS variables for dynamic theming, developers can create responsive, maintainable designs that adapt to user preferences or branding requirements. For more detailed information on theming and customization, you can refer to the Tailwind CSS documentation on colors and theming .
+
+
+
+
+
+Commonly Used Tailwind Utilities (7 questions)
+
+/* 1. **Explain how spacing utilities (like `m-`, `p-`) work in Tailwind.** */
+
+answer
+Spacing Utilities (m-, p-)
+Spacing utilities in Tailwind CSS handle margin and padding through shorthand classes:
+m-{size} for margin (e.g., m-4 adds margin of 1rem on all sides).
+p-{size} for padding (e.g., p-4 adds padding of 1rem on all sides).
+Sizes are based on a default scale (0, 1, 2, 3, etc.), and you can also use negative values (e.g., -m-4) for negative margins.
+
+
+/* 2. **How do you use Flexbox utilities in Tailwind to create layouts?** */
+answer
+Flexbox Utilities
+Flexbox utilities in Tailwind CSS provide classes for creating flexible layouts:
+flex to enable flexbox on a container.
+flex-row or flex-col to set the direction of the flex items.
+justify-{content} for horizontal alignment (e.g., justify-center, justify-between).
+items-{alignment} for vertical alignment (e.g., items-center, items-start).
+
+
+
+/* 3. **What are typography utilities in Tailwind, and how can you style text?** */
+answer
+Typography Utilities
+Typography utilities help style text elements easily:
+text-{size} for font size (e.g., text-lg).
+font-{weight} for font weight (e.g., font-bold).
+leading-{size} for line height (e.g., leading-tight).
+text-{color} for text color (e.g., text-gray-700).
+
+
+
+/* 4. **Describe how background and color utilities work in Tailwind.** */
+answer
+Background and Color Utilities
+Background utilities allow you to set background colors and images:
+bg-{color} for background color (e.g., bg-blue-500).
+bg-cover and bg-center to control background image behavior.
+Color utilities manage text and border colors:
+text-{color} for text color.
+border-{color} for border color.
+
+
+
+/* 5. **What are state variants in Tailwind, and how do they apply to hover, focus, etc.?** */
+answer
+State Variants
+State variants in Tailwind CSS apply styles based on user interactions:
+hover:{utility} for hover state (e.g., hover:bg-blue-700).
+focus:{utility} for focus state (e.g., focus:ring).
+Other states include active, disabled, etc.
+
+
+
+
+/* 6. **How do you handle font customization in Tailwind?** */
+answer
+Font Customization
+Font customization is handled through the configuration file (tailwind.config.js):
+You can extend or override the default font family using the theme.extend.fontFamily property.
+Example:
+javascript
+
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Helvetica', 'Arial', 'sans-serif'],
+      },
+    },
+  },
+};
+
+
+
+
+/* 7. **Explain how Tailwind’s grid utilities work and compare them to CSS Grid.** */
+answer
+Grid Utilities
+Tailwind’s grid utilities facilitate the creation of grid layouts:
+grid to enable grid layout.
+grid-cols-{n} to specify the number of columns (e.g., grid-cols-3).
+col-span-{n} to control how many columns an item spans (e.g., col-span-2).
+Compared to CSS Grid, Tailwind's utilities simplify the process by providing pre-defined classes while still allowing full control similar to traditional CSS Grid techniques.
+
+
+
+
+
+
+Tailwind Layout & Responsiveness (8 questions)
+
+/* 1. **What is the difference between Flexbox and Grid utilities in Tailwind, and when would you use each?** */
+answer
+Difference between Flexbox and Grid Utilities
+Flexbox:
+
+Designed for one-dimensional layouts (either in a row or a column).
+Best used for aligning items along a single axis and distributing space within a container.
+Commonly used for navigation bars, simple card layouts, and aligning items in a line.
+Grid:
+
+Designed for two-dimensional layouts, allowing for both rows and columns.
+Best for complex layouts where you need precise control over both dimensions (e.g., image galleries, dashboard layouts).
+Allows overlapping elements and easier control of both rows and columns simultaneously.
+When to Use Each:
+
+Use Flexbox for simpler layouts with a single direction, like aligning buttons or distributing space in a navbar.
+Use Grid for complex layouts requiring control over both rows and columns, like a magazine layout or grid-based designs.
+
+
+
+/* 2. **How do you create responsive layouts in Tailwind? Provide examples.** */
+
+answer
+Creating Responsive Layouts
+Tailwind provides responsive utility classes that can be applied to adjust layouts based on screen sizes. Here’s how to create responsive layouts:
+
+Example:
+
+html
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+  <div class="p-4">Item 1</div>
+  <div class="p-4">Item 2</div>
+  <div class="p-4">Item 3</div>
+</div>
+In this example:
+
+grid-cols-1 applies on all screen sizes.
+md:grid-cols-2 activates on medium screens (≥768px).
+lg:grid-cols-3 activates on large screens (≥1024px).
+
+
+
+/* 3. **How can you center elements using Tailwind utilities? List different ways.** */
+answer
+Centering Elements
+Tailwind provides several utilities to center elements:
+
+Using Flexbox:
+
+html
+
+<div class="flex items-center justify-center h-screen">
+  <div class="bg-blue-500">Centered Element</div>
+</div>
+Using Margin:
+
+html
+
+<div class="mx-auto w-1/2">Centered Element</div>
+Using Grid:
+
+html
+
+<div class="grid h-screen place-items-center">
+  <div class="bg-blue-500">Centered Element</div>
+</div>
+
+
+/* 4. **What is the `container` class in Tailwind, and how does it help with layout?** */
+answer
+The container Class
+The container class in Tailwind:
+
+Centers the content and applies a maximum width based on the current breakpoint.
+Automatically adjusts padding on the left and right for various screen sizes, making it easy to create a responsive layout without manually adjusting margins.
+Example:
+
+html
+
+<div class="container mx-auto">
+  <h1 class="text-center">Welcome</h1>
+</div>
+
+
+
+/* 5. **Explain how Tailwind’s screen size modifiers work and list some common breakpoints.** */
+
+answer
+Screen Size Modifiers
+Tailwind uses screen size modifiers to apply different styles based on the viewport width:
+
+Common Breakpoints:
+sm: ≥640px
+md: ≥768px
+lg: ≥1024px
+xl: ≥1280px
+2xl: ≥1536px
+Example:
+
+html
+
+<div class="text-base md:text-lg lg:text-xl">Responsive Text</div>
+
+
+/* 6. **How do you create fixed and sticky elements using Tailwind?** */
+
+answer
+Fixed and Sticky Elements
+To create fixed and sticky elements, Tailwind provides utility classes:
+
+Fixed:
+
+html
+
+<div class="fixed top-0 left-0 bg-white">Fixed Header</div>
+Sticky:
+
+html
+
+<div class="sticky top-0 bg-white">Sticky Header</div>
+
+
+
+
+/* 7. **What are responsive hiding/showing utilities in Tailwind, and how do they work?** */
+Responsive Hiding/Showing Utilities
+Tailwind includes responsive utilities to control the visibility of elements based on screen size:
+
+Example:
+html
+
+<div class="hidden md:block">Visible on medium screens and above</div>
+<div class="block md:hidden">Visible on small screens only</div>
+
+
+
+/* 8. **Describe how Tailwind enables mobile-first design.** */
+
+Mobile-First Design
+Tailwind CSS embraces a mobile-first approach, meaning:
+
+The default styles apply to the smallest screen sizes first.
+Larger screens are styled using modifiers (e.g., md:, lg:) to override the defaults as necessary.
+This approach ensures that mobile users receive a fully optimized experience before scaling up for larger devices.
+
+For more detailed explanations on these topics, you can refer to the official Tailwind CSS documentation and other specific sections regarding layout, responsive design, and spacing.
+
+
+
+
+
+
+
+Advanced Tailwind CSS Questions (7 questions)
+/* 1. **How do you extend Tailwind with custom classes and utilities in the configuration file?** */
+
+answer
+Extending Tailwind with Custom Classes and Utilities
+You can extend Tailwind CSS by modifying the tailwind.config.js file. Here’s how to do it:
+
+Add Custom Utilities: You can add custom utilities using the extend property under theme. For example, to add a custom color and spacing:
+javascript
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        customColor: '#1c1c1e',
+      },
+      spacing: {
+        '128': '32rem',
+      },
+    },
+  },
+};
+Create Custom Classes: Define new classes using the @layer directive in your CSS file:
+css
+
+@layer components {
+  .btn-custom {
+    @apply bg-customColor text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+
+
+/* 2. **What are Tailwind plugins, and how can they add functionality to your project?** */
+
+answer
+Tailwind Plugins
+Tailwind plugins are extensions that add additional utilities, components, or functionalities to your Tailwind setup. They can be built-in or custom:
+
+Built-in Plugins: Tailwind comes with several plugins like forms, typography, and aspect ratio.
+Creating Custom Plugins:
+javascript
+
+const plugin = require('tailwindcss/plugin');
+
+module.exports = {
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.rotate-15': {
+          transform: 'rotate(15deg)',
+        },
+      });
+    }),
+  ],
+};
+
+
+
+
+/* 3. **Explain how you can use Tailwind with CSS preprocessors like SASS or PostCSS.** */
+
+Using Tailwind with CSS Preprocessors
+You can integrate Tailwind CSS with preprocessors like SASS or PostCSS:
+
+With SASS:
+
+Install Tailwind and SASS.
+Create a SASS file and import Tailwind:
+scss
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+With PostCSS:
+
+Install PostCSS and Tailwind.
+Configure your postcss.config.js to include Tailwind:
+javascript
+
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+
+
+
+/* 4. **How does Tailwind handle dark mode, and how can you enable it in your project?** */
+
+answer
+Dark Mode Handling
+Tailwind CSS supports dark mode out of the box. You can enable it in the configuration file:
+
+Enable Dark Mode:
+javascript
+
+module.exports = {
+  darkMode: 'class', // or 'media'
+};
+Usage: Use dark: prefix for styles:
+html
+
+<div class="bg-white dark:bg-gray-800">
+  <p class="text-black dark:text-white">Hello, World!</p>
+</div>
+
+
+/* 5. **What are the advantages and potential drawbacks of using Tailwind CSS in a project?** */
+
+answer
+Advantages and Drawbacks of Using Tailwind CSS
+Advantages:
+
+Utility-First Approach: Encourages rapid prototyping with pre-built utility classes.
+Customization: Highly customizable via configuration files.
+Responsive Design: Built-in responsive utilities make it easy to design for different screen sizes.
+Drawbacks:
+
+Learning Curve: May require a shift in mindset from traditional CSS.
+HTML Bloat: Can lead to verbose HTML with many utility classes.
+Initial Setup: Requires a build step to take full advantage of features.
+
+
+
+/* 6. **How do you optimize and purge unused CSS in a Tailwind project?** */
+
+answer
+Optimizing and Purging Unused CSS
+To optimize your Tailwind project and remove unused CSS:
+
+Enable Purge in tailwind.config.js:
+javascript
+
+module.exports = {
+  purge: {
+    content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+    options: {
+      safelist: [], // Add any classes to keep here
+    },
+  },
+};
+
+
+
+
+/* 7. **Describe some new or recent features in the latest version of Tailwind CSS.** */
+
+answer
+New or Recent Features in Tailwind CSS
+Recent versions of Tailwind CSS have introduced several notable features:
+
+JIT Mode: Just-in-Time mode generates styles on demand, enabling arbitrary values and faster builds.
+New Utilities: Introduction of utilities like aspect ratio, typography, and improved color handling.
+Extended Variants: Support for additional state variants such as group-focus and peer.
+
+
