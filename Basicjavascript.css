@@ -1,0 +1,114 @@
+Day 1:  Basic JavaScript & Problem Solving
+
+JavaScript Fundamentals
+
+/* // What are the different data types in JavaScript? */
+answer
+In JavaScript, data types are divided into primitive and non-primitive (reference) types:
+
+Primitive Data Types
+Number: Represents both integer and floating-point numbers. Examples: 5, 3.14.
+String: Represents a sequence of characters. Strings are enclosed in quotes ('text', "text", or `text`).
+Boolean: Holds either true or false values, often used in conditional logic.
+Undefined: A variable that has been declared but not assigned a value has the value undefined.
+Null: Represents an intentional absence of any object value. It is often used to reset or clear a variable.
+Symbol (ES6): Represents unique identifiers and is primarily used to create unique object keys.
+BigInt (ES2020): Allows the representation of integers beyond the safe limit of the Number type (greater than 
+2
+53
+−
+1
+2 
+53
+ −1).
+Non-Primitive (Reference) Data Types
+Object: A complex data structure used to store collections of data and more complex entities. Objects are defined with curly braces { key: value }.
+Array: A type of object used to store lists of values, accessible by index. Defined with square brackets [].
+Function: Functions in JavaScript are treated as objects and can be assigned to variables, passed as arguments, or returned from other functions.
+JavaScript is a dynamically typed language, so the type of a variable can change during runtime.
+
+
+
+
+
+
+/* What is the difference between var, let, and const? */
+answer:
+In JavaScript, var, let, and const are keywords used to declare variables, but they have distinct behaviors:
+
+1. var
+Scope: var is function-scoped, meaning it is accessible within the function where it’s defined or globally if defined outside a function. It ignores block scope (e.g., within {}).
+Hoisting: Variables declared with var are hoisted to the top of their scope, meaning they can be accessed before their declaration, though they will be undefined until initialized.
+Redeclaration: You can redeclare variables with var without errors, which can lead to unintentional overwriting of values.
+javascript
+Copy code
+function example() {
+  console.log(x); // undefined due to hoisting
+  var x = 10;
+  console.log(x); // 10
+}
+2. let
+Scope: let is block-scoped, meaning it is only accessible within the block {} where it’s declared, such as within loops or conditionals.
+Hoisting: let is also hoisted, but unlike var, it is not initialized until the line of declaration (known as the "temporal dead zone"), so accessing it before declaration causes a ReferenceError.
+Redeclaration: You cannot redeclare a variable with let within the same scope, which reduces errors due to accidental redeclaration.
+javascript
+
+if (true) {
+  let y = 5;
+  console.log(y); // 5
+}
+console.log(y); // ReferenceError: y is not defined
+3. const
+Scope: Like let, const is block-scoped.
+Hoisting: It also has a temporal dead zone and behaves like let in terms of hoisting.
+Immutability: Variables declared with const cannot be reassigned, though the properties of objects declared with const can still be modified.
+Redeclaration: Like let, redeclaring a const variable in the same scope is not allowed.
+javascript
+
+const z = 10;
+z = 20; // TypeError: Assignment to constant variable.
+const obj = { name: 'Alice' };
+obj.name = 'Bob'; // This works, as we’re modifying the property, not reassigning `obj`.
+Summary
+var: Function-scoped, hoisted, allows redeclaration.
+let: Block-scoped, hoisted but with a temporal dead zone, no redeclaration.
+const: Block-scoped, hoisted with temporal dead zone, no redeclaration, and cannot be reassigned.
+In modern JavaScript, let and const are generally preferred over var due to their clearer scoping rules and to reduce unintended behaviors. Use const by default for values that won’t change and let for variables that will be reassigned.
+
+
+
+
+/* Explain JavaScript's == vs. === operators. */
+
+answer
+In JavaScript, == and === are comparison operators used to check equality, but they function differently:
+
+1. == (Loose Equality)
+Type Coercion: The == operator compares two values for equality after attempting type conversion if the types are different.
+Behavior: With ==, JavaScript tries to coerce the values to a common type before comparing them. For example:
+javascript
+
+5 == '5';      // true, because '5' is coerced to a number before comparison
+null == undefined;  // true, as both are considered loosely equal in JavaScript
+This makes == flexible but can lead to unexpected results due to automatic type conversion.
+
+2. === (Strict Equality)
+No Type Coercion: The === operator, often called "strict equality," compares both the values and types without any type conversion.
+Behavior: For two values to be strictly equal, they must have the same type and the same value.
+javascript
+
+5 === '5';     // false, because they are of different types
+null === undefined;  // false, because they are different types
+Because === does not perform type conversion, it is generally considered safer and more predictable than ==, especially in larger codebases where implicit conversions can cause bugs.
+
+When to Use Each
+Use ===: It is generally recommended to use === to avoid unexpected type coercion, ensuring that both value and type match.
+Use ==: In cases where type coercion is desired or acceptable, == can be used. However, this should be done carefully and with a good understanding of JavaScript’s type coercion rules.
+In summary, == checks for loose equality with type coercion, while === checks for strict equality without type conversion.
+
+
+
+
+
+
+
