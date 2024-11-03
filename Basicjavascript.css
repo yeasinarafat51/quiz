@@ -492,3 +492,125 @@ dog.speak(); // "Dog makes a noise."
 Prototype-based inheritance is unique to JavaScript, allowing for more flexible and dynamic inheritance patterns compared to traditional class-based languages.
 
 
+
+
+
+/* Arrays and Strings */
+
+/* - **What are some common array methods in JavaScript?** */
+Common Array Methods in JavaScript
+Some common array methods in JavaScript include:
+
+push(): Adds one or more elements to the end of an array.
+pop(): Removes the last element from an array.
+shift(): Removes the first element from an array.
+unshift(): Adds one or more elements to the beginning of an array.
+slice(): Returns a shallow copy of a portion of an array into a new array object.
+splice(): Changes the contents of an array by removing or replacing existing elements.
+concat(): Merges two or more arrays into one.
+join(): Joins all elements of an array into a string.
+find(): Returns the first element that satisfies the provided testing function.
+some(): Tests whether at least one element in the array passes the test implemented by the provided function.
+
+
+
+
+
+/* - **How does `map()` differ from `forEach()` in arrays?** */
+Difference Between map() and forEach()
+map(): Creates a new array populated with the results of calling a provided function on every element in the calling array. It returns the new array and does not mutate the original array.
+
+javascript
+
+const numbers = [1, 2, 3];
+const doubled = numbers.map(num => num * 2); // [2, 4, 6]
+forEach(): Executes a provided function once for each array element, but it does not return a new array. Instead, it performs a side effect (like logging or modifying the original array).
+
+javascript
+
+numbers.forEach(num => console.log(num)); // Logs 1, 2, 3
+In summary, use map() when you want to transform data and forEach() when you want to perform actions without creating a new array.
+
+
+
+
+/* - **Explain the `filter()` method. How does it work?** */
+The filter() Method
+The filter() method creates a new array with all elements that pass the test implemented by the provided function. This method does not mutate the original array and returns a new array containing the elements that satisfy the condition.
+
+javascript
+
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter(num => num % 2 === 0); // [2, 4]
+In this example, filter() returns a new array of even numbers.
+
+
+
+
+
+
+/* - **What does the `reduce()` method do, and how is it used?** */
+The reduce() Method
+The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value. It takes two arguments: a callback function and an optional initial value.
+
+javascript
+
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0); // 10
+In this case, reduce() computes the sum of all the elements in the array.
+
+
+
+
+/* - **How do you find the length of a string and reverse it?** */
+Finding the Length of a String and Reversing It
+To find the length of a string, you can use the .length property. To reverse a string, you can split it into an array, reverse that array, and then join it back into a string.
+
+javascript
+
+const str = "Hello";
+const length = str.length; // 5
+const reversed = str.split('').reverse().join(''); // "olleH"
+
+
+
+
+/* - **What are template literals, and how can they be used for string manipulation?** */
+Template Literals for String Manipulation
+Template literals are string literals that allow embedded expressions, denoted by backticks (`). They can include placeholders using the ${expression} syntax, which makes them useful for string interpolation and multi-line strings.
+
+javascript
+
+const name = "Alice";
+const greeting = `Hello, ${name}!`; // "Hello, Alice!"
+const multiline = `This is a string
+that spans multiple lines.`;
+They enhance readability and make it easier to create complex strings.
+
+
+
+
+/* - **How do you remove duplicates from an array?** */
+Removing Duplicates from an Array
+There are several methods to remove duplicates from an array:
+
+Using a Set: A Set automatically removes duplicates since it only stores unique values.
+
+javascript
+
+const numbers = [1, 2, 2, 3, 4, 4, 5];
+const uniqueNumbers = [...new Set(numbers)]; // [1, 2, 3, 4, 5]
+Using filter(): You can filter out duplicates by checking if the index of the element is the same as the current index.
+
+javascript
+
+const uniqueNumbers = numbers.filter((value, index, self) => 
+  self.indexOf(value) === index
+);
+Both methods efficiently remove duplicates from an array, with the Set method generally being more concise.
+
+
+
+
+
+
