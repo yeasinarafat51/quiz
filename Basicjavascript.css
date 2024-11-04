@@ -614,3 +614,187 @@ Both methods efficiently remove duplicates from an array, with the Set method ge
 
 
 
+/* Control Structures and Error Handling */
+
+/* - **How does JavaScript handle implicit type conversion?** */
+
+Implicit Type Conversion in JavaScript
+JavaScript performs implicit type conversion (also known as type coercion) automatically in certain contexts where operations involve different data types. This means that JavaScript will convert one type into another as needed for the operation to proceed.
+
+Example of Implicit Conversion:
+When using the + operator with a string and a number, the number is coerced to a string:
+javascript
+
+console.log(5 + '5'); // "55"
+Conversely, when using -, JavaScript converts the string to a number:
+javascript
+
+console.log('5' - 2); // 3
+However, coercion can lead to unexpected results, especially with comparisons. For instance:
+
+javascript
+
+console.log(0 == '0'); // true (both are equal after coercion)
+console.log(0 === '0'); // false (strict comparison, types do not match)
+
+
+/* - **What does `typeof` return for different data types?** */
+typeof Operator in JavaScript
+The typeof operator is used to determine the data type of a given value. Here’s what it returns for various data types:
+
+typeof "Hello" → "string"
+typeof 10 → "number"
+typeof true → "boolean"
+typeof undefined → "undefined"
+typeof {} → "object"
+typeof [] → "object" (since arrays are a type of object)
+typeof null → "object" (a known quirk)
+typeof function() {} → "function" (functions are also objects)
+
+
+
+
+/* - **What is NaN, and how can you check if a value is NaN?** */
+NaN and Checking for NaN
+NaN stands for "Not-a-Number" and represents an unrepresentable numerical result, such as when you try to perform an operation like dividing zero by zero or parsing a non-numeric string as a number.
+
+To check if a value is NaN, use:
+isNaN(value): Returns true if the value is NaN or cannot be converted to a number.
+javascript
+
+console.log(isNaN(NaN)); // true
+console.log(isNaN("abc")); // true
+Number.isNaN(value): More reliable, only returns true if the value is exactly NaN.
+javascript
+
+console.log(Number.isNaN(NaN)); // true
+console.log(Number.isNaN("abc")); // false
+
+
+
+
+/* Miscellaneous */
+
+/* - **What is event delegation, and how does it work?** */
+Event Delegation
+Event delegation is a technique in JavaScript that allows you to attach a single event listener to a parent element instead of individual child elements. This method takes advantage of event bubbling, where an event propagates from the target element up to the root of the DOM.
+
+How it Works:
+
+You attach an event listener to a parent element.
+When an event occurs on a child element, it bubbles up to the parent, triggering the parent's event handler.
+Inside the handler, you can determine which child element was the actual target of the event.
+Benefits:
+
+Reduces memory usage by limiting the number of event listeners.
+Automatically handles dynamically added elements.
+
+
+
+/* - **What are default parameters in JavaScript?** */
+Default Parameters in JavaScript
+Default parameters allow you to initialize function parameters with default values if no value or undefined is passed.
+
+Example:
+
+javascript
+
+function multiply(a, b = 1) {
+    return a * b;
+}
+console.log(multiply(5)); // 5, because b defaults to 1
+
+
+
+
+/* - **What is the difference between synchronous and asynchronous programming?** */
+Synchronous vs. Asynchronous Programming
+Synchronous Programming: Tasks are executed one after another. The next task cannot start until the previous one completes, which can lead to blocking behavior.
+
+Asynchronous Programming: Tasks can run in parallel, allowing other tasks to continue executing while waiting for a slow operation (like a network request) to finish. This is achieved using callbacks, promises, and async/await syntax.
+
+Example of Asynchronous Behavior:
+
+javascript
+
+console.log('Start');
+setTimeout(() => console.log('Timeout'), 1000);
+console.log('End');
+Output:
+
+sql
+
+Start
+End
+Timeout
+
+
+
+
+/* - **How does the `setTimeout` function work, and what is its use?** */
+setTimeout Function
+The setTimeout function is used to execute a specified function after a set amount of time (in milliseconds).
+
+Usage:
+
+javascript
+
+setTimeout(() => {
+    console.log('Executed after 2 seconds');
+}, 2000);
+
+
+
+
+/* - **What is the purpose of `JSON.stringify()` and `JSON.parse()`?** */
+JSON.stringify() and JSON.parse()
+JSON.stringify(): Converts a JavaScript object or value to a JSON string. This is useful for storing data or sending it to a server.
+
+JSON.parse(): Parses a JSON string, constructing the JavaScript value or object described by the string.
+
+Example:
+
+javascript
+
+const obj = { name: "Alice", age: 25 };
+const jsonString = JSON.stringify(obj); // '{"name":"Alice","age":25}'
+const parsedObj = JSON.parse(jsonString); // { name: "Alice", age: 25 }
+
+
+
+/* - **How can you handle asynchronous code in JavaScript?** */
+Handling Asynchronous Code in JavaScript
+You can handle asynchronous code using:
+
+Callbacks: Functions passed as arguments to be executed later.
+Promises: Objects representing the eventual completion (or failure) of an asynchronous operation.
+Async/Await: A syntax that allows you to write asynchronous code in a synchronous style.
+Example using Promises:
+
+javascript
+
+const fetchData = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve('Data received'), 2000);
+    });
+};
+
+fetchData().then(data => console.log(data));
+
+
+
+
+/* - **Explain the concept of the Event Loop in JavaScript.** */
+Concept of the Event Loop
+The event loop is a core part of JavaScript's concurrency model. It allows JavaScript to perform non-blocking operations by offloading operations to the browser’s Web APIs. Here’s how it works:
+
+Call Stack: Executes the current task.
+Web APIs: Handles asynchronous operations (like timers and HTTP requests).
+Callback Queue: Contains messages (callbacks) that are waiting to be executed.
+Event Loop: Continuously checks the call stack and the callback queue. If the call stack is empty, it pushes the first callback from the queue onto the stack for execution.
+This mechanism allows JavaScript to handle multiple operations without blocking the main thread.
+
+
+
+
+
