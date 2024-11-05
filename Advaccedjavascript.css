@@ -1,0 +1,187 @@
+Advance JS Interview Question
+
+ES6 (10 questions)
+
+/* 1. **What are arrow functions in ES6, and how are they different from regular functions?** */
+Arrow Functions: Arrow functions provide a shorter syntax for writing functions and handle the this context differently than traditional functions. Regular functions have their own this context, while arrow functions inherit this from their parent scope. For example:
+
+javascript
+
+const add = (a, b) => a + b;
+
+
+
+
+/* 2. **What is destructuring assignment in ES6, and how does it work with arrays and objects?** */
+Destructuring Assignment: Destructuring lets you extract properties from objects or elements from arrays into variables with a clean syntax. With arrays, you can do:
+
+javascript
+
+const [first, second] = [1, 2];
+console.log(first); // 1
+With objects, you can do:
+
+javascript
+
+const person = { name: 'Alice', age: 25 };
+const { name, age } = person;
+console.log(name); // Alice
+
+
+
+    /* - **Project**: Write a function that takes an object with properties and logs each property individually. */
+    Project: Write a function to destructure an object and log each property:
+
+    javascript
+  
+    function logProperties({ name, age }) {
+        console.log(`Name: ${name}, Age: ${age}`);
+    }
+    logProperties({ name: 'Alice', age: 25 });
+
+
+
+
+/* 3. **Explain `let`, `const`, and `var` keywords. When should you use each?** */
+
+let, const, and var:
+
+var is function-scoped and allows re-declaration within its scope.
+let is block-scoped and does not allow re-declaration in the same scope.
+const is block-scoped and used for variables that should not be reassigned. However, if const is used with an object or array, the contents can still be changed.
+
+
+
+
+/* 4. **What is the `spread` operator, and how can it be used with arrays and objects?** */
+The spread operator (...) in JavaScript is a powerful tool introduced in ES6 that allows for the expansion of elements in arrays or properties in objects, making it especially useful for combining or cloning them.
+
+How the Spread Operator Works
+With Arrays: The spread operator can expand elements in an array, making it simple to merge arrays, copy them, or pass individual elements to functions that expect separate arguments.
+
+Example: Merging two arrays
+javascript
+
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+const mergedArray = [...array1, ...array2];
+console.log(mergedArray); // [1, 2, 3, 4, 5, 6]
+With Objects: The spread operator can also be used to combine or clone objects by expanding properties, making it simple to combine or copy objects without altering the original ones.
+
+Example: Merging two objects
+javascript
+
+const obj1 = { name: "Alice" };
+const obj2 = { age: 25 };
+const mergedObject = { ...obj1, ...obj2 };
+console.log(mergedObject); // { name: "Alice", age: 25 }
+
+
+    /* - **Project**: Merge two arrays using the spread operator. */
+    Project: Merging Two Arrays
+To merge two arrays using the spread operator:
+
+javascript
+
+const arr1 = ['a', 'b', 'c'];
+const arr2 = ['d', 'e', 'f'];
+const mergedArr = [...arr1, ...arr2];
+console.log(mergedArr); // Output: ['a', 'b', 'c', 'd', 'e', 'f']
+Benefits of the Spread Operator
+Simplifies Array and Object Manipulation: Instead of looping or using concat(), you can quickly combine arrays or objects.
+Immutability-Friendly: Helps create new arrays or objects without modifying the originals, which is useful for state management in libraries like React.
+The spread operator thus streamlines code and improves readability, especially when working with data structures in modern JavaScript.
+
+
+
+
+/* 5. **How does template literals work in ES6, and how does it make string interpolation easier?** */
+Template Literals: Template literals simplify string concatenation and interpolation. They use backticks (`) and ${expression} syntax:
+
+javascript
+
+const name = 'Alice';
+const greeting = `Hello, ${name}!`;
+console.log(greeting); // Hello, Alice!
+
+
+
+/* 6. **What are `default parameters` in ES6, and how do they improve function flexibility?** */
+Default Parameters: Default parameters allow you to set default values for function parameters, enhancing flexibility:
+
+javascript
+
+function greet(name = 'Guest') {
+    console.log(`Hello, ${name}`);
+}
+greet(); // Hello, Guest
+
+
+
+
+/* 7. **Explain what `Map` and `Set` are in ES6 and how they differ from objects and arrays.** */
+Map and Set:
+
+Map is a collection of key-value pairs with keys of any type.
+Set is a collection of unique values.
+
+
+
+    /* - **Project**: Create a simple dictionary with `Map` to store key-value pairs. */
+    Project: Creating a dictionary with Map:
+
+javascript
+
+const dictionary = new Map();
+dictionary.set('hello', 'A greeting');
+dictionary.set('world', 'The earth');
+console.log(dictionary.get('hello')); // A greeting
+
+
+
+/* 8. **What is the purpose of the `for...of` loop, and how is it different from `for...in`?** */
+for...of vs. for...in:
+
+for...of is used to iterate over iterable objects like arrays and strings.
+for...in iterates over enumerable properties of an object.
+javascript
+
+const arr = [10, 20, 30];
+for (const num of arr) {
+    console.log(num); // 10, 20, 30
+}
+
+
+
+
+/* 9. **Explain the concept of `Promise` in JavaScript. How do you use `.then()` and `.catch()`?** */
+Promises: Promises handle asynchronous operations. They use .then() for success and .catch() for errors.
+
+
+
+
+    /* - **Project**: Create a promise that resolves after 2 seconds and logs a message. */
+    Project: Create a promise that resolves after 2 seconds:
+
+javascript
+
+const delayedMessage = new Promise((resolve) => {
+    setTimeout(() => resolve('Hello after 2 seconds'), 2000);
+});
+
+delayedMessage.then((msg) => console.log(msg));
+
+
+
+
+/* 10. **What is async/await, and how does it work with Promises?** */
+async/await: async/await syntax is used to handle promises in a more readable way. The await keyword pauses the function until the promise resolves:
+
+javascript
+
+async function greet() {
+    const message = await delayedMessage;
+    console.log(message);
+}
+greet(); // Hello after 2 seconds
+Each of these features contributes to cleaner, more efficient, and more readable JavaScript code, especially when working with asynchronous logic, modular components, and complex data structures.
