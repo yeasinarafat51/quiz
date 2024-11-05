@@ -185,3 +185,282 @@ async function greet() {
 }
 greet(); // Hello after 2 seconds
 Each of these features contributes to cleaner, more efficient, and more readable JavaScript code, especially when working with asynchronous logic, modular components, and complex data structures.
+
+
+
+
+
+
+
+
+
+
+DOM (8 questions)
+
+/* 1. **What is the DOM, and how does JavaScript interact with it?** */
+The Document Object Model (DOM) is a programming interface for HTML and XML documents. It represents the page structure as a hierarchical tree of objects where each node is an object corresponding to a part of the document, such as elements, attributes, or text content. JavaScript interacts with the DOM to dynamically manipulate HTML content, styles, and events, enabling real-time updates and interactive experiences on a web page. For example, JavaScript can add new elements, change existing content, or attach event listeners to respond to user actions.
+
+
+
+
+/* 2. **Explain how to select elements in the DOM using methods like `getElementById`, `querySelector`, and `querySelectorAll`.** */
+Selecting Elements in the DOM
+getElementById: Selects an element by its id attribute. It returns a single element.
+
+javascript
+
+const element = document.getElementById('myDiv');
+querySelector: Selects the first matching element using CSS selectors. This method can select by class, id, tag, or attribute.
+
+javascript
+
+const element = document.querySelector('.myClass');
+querySelectorAll: Selects all elements matching a CSS selector, returning a NodeList.
+
+javascript
+
+const elements = document.querySelectorAll('div');
+
+
+
+    /* - **Project**: Create a webpage with a button that changes the color of a `div` when clicked. */
+    Project Example
+html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #myDiv { width: 100px; height: 100px; background-color: blue; }
+  </style>
+</head>
+<body>
+  <div id="myDiv"></div>
+  <button id="colorButton">Change Color</button>
+  <script>
+    const div = document.getElementById('myDiv');
+    const button = document.getElementById('colorButton');
+    button.addEventListener('click', () => {
+      div.style.backgroundColor = 'red';
+    });
+  </script>
+</body>
+</html>
+
+
+/* 3. **How do event listeners work in JavaScript? Explain `addEventListener`.** */
+How Event Listeners Work in JavaScript: addEventListener
+Event listeners allow JavaScript to respond to user interactions. Using addEventListener, you can attach a function to be executed when an event occurs on an element. It can listen for many types of events, such as clicks, keypresses, and scroll events.
+
+javascript
+
+button.addEventListener('click', function() {
+  console.log('Button clicked!');
+});
+
+
+
+/* 4. **What is event delegation, and why is it useful?** */
+What is Event Delegation and Why is it Useful?
+Event delegation allows you to manage events on multiple child elements through a single parent by listening for events on the parent and using logic to determine the specific child that triggered the event. This reduces the number of event listeners and enhances performance, especially in dynamic lists.
+
+
+
+    /* - **Project**: Create a list where clicking on each list item logs its content. Use event delegation. */
+    Project Example
+    html
+   
+    <ul id="list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <script>
+      const list = document.getElementById('list');
+      list.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+          console.log(event.target.textContent);
+        }
+      });
+    </script>
+
+
+/* 5. **What is the difference between `innerHTML`, `textContent`, and `innerText`?** */
+Difference between innerHTML, textContent, and innerText
+innerHTML: Retrieves or sets HTML content inside an element. This includes tags and elements.
+textContent: Retrieves or sets only the text content of an element and its children, ignoring HTML.
+innerText: Similar to textContent, but it respects the element’s styling (e.g., it won’t retrieve hidden text).
+
+
+
+/* 6. **Explain how you can manipulate CSS styles of an element using JavaScript.** */
+Manipulating CSS Styles of an Element with JavaScript
+JavaScript can modify CSS styles by accessing the style property of an element.
+
+javascript
+
+element.style.color = 'blue';
+element.style.fontSize = '20px';
+
+
+
+
+/* 7. **How do you traverse the DOM? Explain `parentNode`, `firstChild`, `lastChild`, etc.** */
+DOM Traversal: parentNode, firstChild, lastChild, etc.
+DOM traversal properties allow navigation between nodes:
+
+parentNode: Gets the parent node of an element.
+firstChild and lastChild: Access the first and last child nodes, respectively.
+nextSibling and previousSibling: Access the next and previous sibling nodes.
+
+
+
+
+/* 8. **What is the purpose of `preventDefault()` and `stopPropagation()` in event handling?** */
+Purpose of preventDefault() and stopPropagation() in Event Handling
+preventDefault(): Prevents the default behavior of an element, like preventing form submission.
+stopPropagation(): Prevents an event from bubbling up or capturing down through the DOM hierarchy.
+
+
+
+    /* - **Project**: Create a form that prevents submission and logs a message instead. */
+    Project Example
+html
+
+<form id="myForm">
+  <input type="text" placeholder="Enter text">
+  <button type="submit">Submit</button>
+</form>
+<script>
+  const form = document.getElementById('myForm');
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log('Form submission prevented!');
+  });
+</script>
+These examples give a foundational understanding of manipulating and handling DOM elements using JavaScript for interactive web development.
+
+
+
+
+
+
+BOM (8 questions)
+
+/* 1. **What is the Browser Object Model (BOM) in JavaScript?** */
+The Browser Object Model (BOM) provides access to the browser's window and various browser functions, enabling JavaScript to interact with the browser beyond the document content. It includes objects such as window, navigator, location, history, and screen, which offer tools for manipulating the browser, controlling sessions, and gathering information about the user's environment. For example, BOM allows opening/closing browser windows, checking the user’s location, or storing temporary data through localStorage and sessionStorage.
+
+
+
+
+/* 2. **How does `window` differ from `document`?** */
+window: Represents the entire browser window and is the global object in JavaScript. It includes methods, properties, and sub-objects such as document, localStorage, location, and navigator.
+document: Represents the HTML document loaded in the browser. It provides access to the DOM (Document Object Model), allowing JavaScript to manipulate elements, text, and other content within the webpage.
+
+
+
+/* 3. **Explain how `localStorage`, `sessionStorage`, and `cookies` work and their differences.** */
+localStorage: Stores data with no expiration date, persisting even after the browser is closed. Ideal for storing user preferences or long-term data.
+
+javascript
+
+localStorage.setItem('theme', 'dark'); // Store
+localStorage.getItem('theme'); // Retrieve
+sessionStorage: Stores data for the duration of a page session. Data is cleared when the page session ends (e.g., when the tab is closed).
+
+Cookies: Used for storing small pieces of data, often with an expiration date. Cookies are sent to the server with every HTTP request, making them useful for authentication but with more overhead than localStorage or sessionStorage.
+
+
+
+    /* - **Project**: Store and retrieve /user preferences (like theme) using `localStorage`. */
+    Project Example: Store and Retrieve User Preferences Using localStorage
+javascript
+
+// Save user preference
+localStorage.setItem('theme', 'dark');
+
+// Retrieve preference
+const theme = localStorage.getItem('theme');
+document.body.className = theme; // Apply the theme
+
+
+/* 4. **What is the purpose of the `navigator` object, and what properties does it have?** */
+Purpose of the navigator Object and Its Properties
+The navigator object represents the user’s browser and provides information about the browser type, version, and other environment-related properties. Common properties include:
+
+navigator.userAgent: Browser information string.
+navigator.language: User’s language preference.
+navigator.onLine: Boolean indicating if the user is online.
+navigator.geolocation: Accesses geolocation data (with user permission).
+
+
+
+/* 5. **How do `window.open` and `window.close` methods work in JavaScript?** */
+window.open(url, name, specs): Opens a new browser window or tab. You can specify the URL, name of the window, and additional features like width, height, etc.
+window.close(): Closes the current window. This can only close windows opened by JavaScript due to security reasons.
+
+
+
+/* 6. **Explain how to get the viewport width and height of a browser window using JavaScript.** */
+Getting the Viewport Width and Height of a Browser Window
+To retrieve the width and height of the viewport:
+
+javascript
+
+const width = window.innerWidth;
+const height = window.innerHeight;
+
+
+    /* - **Project**: Create a function that logs the window’s size whenever it’s resized. */
+    Project Example: Log the Window’s Size on Resize
+javascript
+
+window.addEventListener('resize', () => {
+  console.log(`Width: ${window.innerWidth}, Height: ${window.innerHeight}`);
+});
+
+
+
+/* 7. **What is the purpose of the `setTimeout` and `setInterval` functions?** */
+Purpose of setTimeout and setInterval
+setTimeout: Delays the execution of a function for a specified number of milliseconds.
+javascript
+
+setTimeout(() => { console.log("Hello, World!"); }, 1000); // Runs after 1 second
+setInterval: Repeatedly executes a function at specified intervals (in milliseconds) until canceled.
+
+
+
+    /* - **Project**: Create a clock that updates every second using `setInterval`. */
+    Project Example: Create a Clock with setInterval
+javascript
+
+setInterval(() => {
+  const now = new Date();
+  console.log(now.toLocaleTimeString());
+}, 1000); // Updates every second
+
+
+/* 8. **How can you detect if a user is online or offline using the BOM?** */
+Detecting if a User is Online or Offline Using the BOM
+The navigator.onLine property allows checking if the user is connected to the internet. You can also add event listeners for 'online' and 'offline' events:
+
+javascript
+
+window.addEventListener('online', () => console.log('User is online'));
+window.addEventListener('offline', () => console.log('User is offline'));
+These tools from the BOM enable JavaScript to interact closely with the browser environment, providing additional functionality and enhancing the user experience.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
